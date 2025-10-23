@@ -33,6 +33,7 @@
 
 ## 🌟 Updates
 
+- `[Oct 23, 2025]` 🔥 We have released the updated 302 Web task trajectories!
 - `[Jul 21, 2025]` 🔥 We have released the first batch of 130 Web task trajectories!
 
 ## 📖 Overview
@@ -106,7 +107,7 @@ python agents/some_agent.py
 
 ## 📊 Evaluation
 
-The dataset of VeriGUI is located at [veriGUI.json](data/veriGUI.json). The format of the dataset is described in detail in the following sections.
+The dataset of VeriGUI is located at [data](data). The format of the dataset is described in detail in the following sections.
 
 ```json
 [
