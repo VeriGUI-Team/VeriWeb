@@ -1,8 +1,4 @@
-<p align="center">
-  <img src="data/VeriGUI.png" alt="VeriGUI banner" width="800"/>
-</p>
-
-<h1 align="center"> Verifiable Long-Chain Multi-Domain GUI Dataset</h1>
+<h1 align="center">VeriWeb: Verifiable Long-Chain Web Benchmark for Agentic Information-Seeking</h1>
 
 <div align="center">
 <a href='https://arxiv.org/abs/2508.04026'><img src='https://img.shields.io/badge/Paper-Arxiv-red.svg?style=for-the-badge&logo=arxiv&logoColor=white'></a> 
@@ -11,8 +7,7 @@
 </div>
 
 > [!NOTE]
-> This work is still in progress and additional data will be included in a future version.
-
+> This project was originally named VeriGUI. As our initial data collection focused on web-based tasks that primarily involve information-seeking rather than GUI interaction, we now define this part as the standalone VeriWeb benchmark, while desktop and other GUI-oriented scenarios will be released as a separate benchmark (in progress). We apologize for any resulting confusion.
 
 
 ## 🧭 Contents
@@ -33,23 +28,23 @@
 
 ## 🌟 Updates
 
-- `[Oct 23, 2025]` 🔥 We have released the updated 302 Web task trajectories!
-- `[Jul 21, 2025]` 🔥 We have released the first batch of 130 Web task trajectories!
+- `[Oct 23, 2025]` 🔥 We have released the updated 302 web-based task trajectories!
+- `[Jul 21, 2025]` 🔥 We have released the first batch of 130 web-based task trajectories!
 
 ## 📖 Overview
 
-Recent studies have delved into constructing autonomous agents capable of performing complex Graphical User Interface (GUI)-based computer tasks, with the potential to revolutionize human-computer interaction. Despite encouraging results, existing efforts mainly focus on **short-term interactions** and rely on **outcome-only verification**, thereby limiting their scalability in real-world GUI applications that demand long-horizon task decomposition and execution.
+Recent advances have showcased the extraordinary capabilities of Large Language Model (LLM) agents in tackling web-based information-seeking tasks. However, existing efforts mainly focus on **single-fact retrieval** and rely on **outcome-only verification**, thereby limiting their scalability in realistic knowledge-intensive scenarios that involve long-horizon web tasks requiring large-scale retrieval and synthesis of information from diverse sources.
 
-In this work, we introduce **VeriGUI**, a novel verifiable long-chain GUI dataset designed to facilitate the development and evaluation of generalist GUI agents operating in realistic computer environments. Our dataset emphasizes two critical dimensions:
+In this work, we introduce VeriWeb, a novel verifiable long-chain web benchmark designed to facilitate the evaluation and development of web agents within realistic web environments. Our benchmark emphasizes two critical dimensions: 
 
-- (1) **🔗 Long-chain complexity**, with tasks decomposed into a sequence of interdependent subtasks spanning hundreds of steps, explicitly designed to allow any subtask serve as a valid starting point;
-- (2) **✅ subtask-level verifiability**, which enables diverse exploration strategies within each subtask, while ensuring that each subtask-level goal remain verifiable and consistent.
+- (1) **🔗 Long-chain complexity**, encompassing both breadth- and depth-oriented search tasks to assess how effectively web agents ensure comprehensive information coverage and  consistent context tracking in multi-hop reasoning;
+- (2) **✅ subtask-level verifiability**, where tasks are decomposed into a sequence of interdependent verifiable subtasks. This structure enables diverse exploration strategies within each subtask, while ensuring that each subtask-level answer remains unchanged and verifiable.
 
-The dataset consists of GUI task trajectories spanning both desktop and web, **annotated by human experts**. Extensive experiments on VeriGUI using various agents with different foundation models reveal significant performance gaps in handling long-horizon tasks, highlighting the need for more robust planning and decision-making capabilities in GUI agents.
+The benchmark consists of 302 tasks across five real-world domains, each with a complete trajectory demonstration, **annotated by human experts**. Extensive experiments on VeriWeb using various agents powered by different foundation models reveal significant performance gaps in handling long-horizon web tasks, highlighting the need for more powerful agentic information-seeking capabilities
 
 <div align="center">
-  <img src="images/data.png" alt="VeriGUI Dataset Overview" width="800">
-  <p><em>The VeriGUI dataset consists of various GUI tasks spanning both desktop and web.</em></p>
+  <img src="images/data.png" alt="VeriWeb Dataset Overview" width="800">
+  <p><em>An overview of the VeriWeb benchmark across five domain-specific scenarios.</em></p>
 </div>
 
 ## ✨ Key Features
@@ -57,34 +52,23 @@ The dataset consists of GUI task trajectories spanning both desktop and web, **a
 
 ### 🔗 Long-Chain Complexity
 
-- Tasks require **2-15 interdependent subtasks** with hundreds of GUI actions
-- Complex workflows spanning multiple applications and web pages
-- Realistic task dependencies that require adaptive reasoning and planning
-- Tasks mirror real-world computer usage patterns
+- 302 realistic information-seeking tasks across 5 real-world domains
+- Long-chain web trajectories decomposed into multiple interdependent subtasks
+- Tasks combine breadth-oriented search and depth-oriented search
+- Agents must retrieve, track, and synthesize evidence from diverse web pages while maintaining consistent cross-page context
 
 ### ✅ Subtask-Level Verifiability
 
-- **Fine-grained evaluation** at each intermediate subtask, not just final outcomes
-- Verifiable goals for each subtask while supporting diverse exploration strategies
-- Open-ended interaction within subtasks - agents can choose different paths to achieve the same goal
-- Detailed supervision signals for better error diagnosis and agent improvement
-
-### 🌐 Multi-Environment Coverage
-
-- **Web environments**: Various websites, online services, and web applications
-- **Desktop environments**: Office software, operating systems, and professional tools (TODO)
-- Cross-platform task transitions and interactions
+- Fine-grained evaluation at each intermediate subtask, not only the final outcome
+- Fixed, verifiable target outputs for every subtask while supporting diverse exploration strategies
+- Each subtask can serve as an independent starting point, enabling evaluation at different stages of a task
+- Rich supervision signals for diagnosing failure modes and improving long-horizon planning, retrieval, and synthesis
 
 ### 🧑‍🎨 Human-Expert Annotation
 
-- All trajectories carefully created and annotated by human experts
-- High-quality task instructions and subtask-level annotations
-- Verified task feasibility and realistic workflow patterns
-
-<div align="center">
-  <img src="images/intro_hd.png" alt="VeriGUI Dataset Overview" width="800">
-  <p><em>An overview of the VeriGUI dataset.</em></p>
-</div>
+- All tasks and trajectories carefully created and annotated by human experts
+- High-quality task instructions, subtask decompositions, and answer annotations
+- Each task includes a complete human demonstration with detailed observation and action logs in realistic web environments
 
 
 ## 🚀 Installation
@@ -107,7 +91,7 @@ python agents/some_agent.py
 
 ## 📊 Evaluation
 
-The dataset of VeriGUI is located at [data](data). The format of the dataset is described in detail in the following sections.
+The dataset of VeriWeb is located at [data](data). The format of the dataset is described in detail in the following sections.
 
 ```json
 [
@@ -142,7 +126,7 @@ The evaluation script `evaluate.py` can be used to evaluate the performance of a
 With this file, you can run the evaluation script to get the performance of the agent:
 
 ```shell
-python evaluate.py --input_file veriGUI_prediction.json --output_file output.json
+python evaluate.py --input_file veriWeb_prediction.json --output_file output.json
 ```
 
 Then, you can use `calc_avg.py` to calculate the average score of the evaluation results:
@@ -158,9 +142,13 @@ The directory structure of the project is defined as follows:
 ```
 agent-workflow-devkit/
 ├── agents/                 # Agent implementations
+│   └── deepresearch.py     # Deepresearch agent example
+│   └── search.py           # Search engine agent example
 │   └── browseruse.py       # Browser-use agent example
+│   └── owl.py              # Multi-agent system example
 ├── data/                   # Dataset files
-│   └── veriGUI.json        # Main dataset
+│   └── data.json           # Cleaned data
+│   └── original.json       # Original data
 ├── evaluated/              # Evaluation results
 ├── predictions/            # Model predictions
 ├── evaluate.py             # Evaluation script
@@ -185,7 +173,7 @@ agent-workflow-devkit/
 
 ## 🎓 Citation
 
-If you find VeriGUI useful in your research, please cite our paper:
+If you find VeriWeb useful in your research, please cite our paper:
 
 ```bibtex
 @article{verigui2025,
@@ -200,20 +188,14 @@ If you find VeriGUI useful in your research, please cite our paper:
 
 For questions, suggestions, or collaborations, please feel free to:
 
-- 🐛 Issues: [GitHub Issues](https://github.com/VeriGUI-Team/VeriGUI/issues)
+- 🐛 Issues: [GitHub Issues](https://github.com/VeriTeam/VeriWeb/issues)
 
 ## 👥 Contributors
 
-We thank all contributors who have helped make VeriGUI possible. Special thanks to the research team and community members who provided valuable feedback and improvements.
+We thank all contributors who have helped make VeriWeb possible. Special thanks to the research team and community members who provided valuable feedback and improvements.
 
 
 ## 📄 License
 
 This project is licensed under the Apache 2.0 License.
 
-
----
-
-<div align="center">
-  <p><strong>🌟 Star us on GitHub if you find VeriGUI helpful! 🌟</strong></p>
-</div>
