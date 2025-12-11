@@ -55,20 +55,20 @@ The benchmark consists of 302 tasks across five real-world domains, each with a 
 - 302 realistic information-seeking tasks across 5 real-world domains
 - Long-chain web trajectories decomposed into multiple interdependent subtasks
 - Tasks combine breadth-oriented search and depth-oriented search
-- Agents must retrieve, track, and synthesize evidence from diverse web pages while maintaining consistent cross-page context
+- Agents must retrieve, reason, and synthesize evidence from diverse web pages
 
 ### ✅ Subtask-Level Verifiability
 
 - Fine-grained evaluation at each intermediate subtask, not only the final outcome
 - Fixed, verifiable target outputs for every subtask while supporting diverse exploration strategies
 - Each subtask can serve as an independent starting point, enabling evaluation at different stages of a task
-- Rich supervision signals for diagnosing failure modes and improving long-horizon planning, retrieval, and synthesis
+- Rich supervision signals for diagnosing failure modes
 
 ### 🧑‍🎨 Human-Expert Annotation
 
 - All tasks and trajectories carefully created and annotated by human experts
 - High-quality task instructions, subtask decompositions, and answer annotations
-- Each task includes a complete human demonstration with detailed observation and action logs in realistic web environments
+- Each task includes a complete human demonstration with detailed observation and action logs
 
 
 ## 🚀 Installation

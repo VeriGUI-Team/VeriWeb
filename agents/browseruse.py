@@ -10,7 +10,6 @@ from browser_use.llm import ChatOpenAI
 
 load_dotenv()
 
-# ===== 配置 =====
 model = "o3"
 api_key = ""
 base_url = ""
@@ -24,16 +23,15 @@ def natural_key(name: str):
 
 try:
     with open(DATA_FILE, "r", encoding="utf-8") as f:
-        raw_tasks = json.load(f)         # 读取整个 JSON 列表
+        raw_tasks = json.load(f)
 except (FileNotFoundError, json.JSONDecodeError) as e:
     raise RuntimeError(f"read {DATA_FILE} failed：{e}")
 
-# 按 folder 做自然排序后写入 tasks
+
 for item in sorted(raw_tasks, key=lambda x: natural_key(x["folder"])):
     folder_name = item.get("folder")
     instruct = item.get("instruct", "").strip()
 
-    # 简单校验
     if not folder_name or not instruct:
         tqdm.write(f"⚠️  skipped：{item}")
         continue
